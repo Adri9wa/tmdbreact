@@ -2,16 +2,20 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
-import reportWebVitals from './reportWebVitals';
+import { BrowserRouter as Router, Redirect, Route } from 'react-router-dom';
+import MovieDetails from './Components/MovieDetails'
+import Search from './Components/Search'
+import PopularMovies from './Components/PopularMovies';
 
 ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
+  <Router>
+    <Redirect to="/popular" />
+      <Route path="/" component={App}/>
+      <Route path="/popular" exact component={PopularMovies} />
+      <Route path="/details/:id" render={props => <MovieDetails {...props} />}/>
+      <Route path="/search/:name" component={Search} />
+  </Router>
+,
   document.getElementById('root')
 );
 
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();

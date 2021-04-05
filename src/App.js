@@ -1,25 +1,47 @@
-import logo from './logo.svg';
-import './App.css';
+import React, {useState} from 'react'
+import Search from './Components/Search';
+import PopularMovies from './Components/PopularMovies'
+import { BrowserRouter as Router, Link, Redirect } from 'react-router-dom'
+import TMDBLogo from './Assets/TMDb_Logo.png'
 
 function App() {
+  const [query, setQuery] = useState('');
+  const [movies, setMovies] = useState([]);
+
+  const searchMovies = async(e) => {
+
+      e.preventDefault();
+      
+      const url = `https://api.themoviedb.org/3/search/movie?api_key=071635fb0b2b71f93557ffd362974c76&language=en-US&query=${query}&page=1&include_adult=false`;
+      
+      try{
+          const res = await fetch(url);
+          const data = await res.json();
+          console.log(data.results);
+          setMovies(data.results)
+      } catch(err){
+          console.error(err);
+      }
+  }
+
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+      <header>
+        <Link to="/popular"> 
+        <img className="logo" src={TMDBLogo} />
+        </Link>
+        <p className="mainTitle">The Movie Database React app</p>
+        <form className="form" onSubmit={searchMovies}>
+        <input type="text" name="query" placeholder="Enter name.."
+        value={query} onChange={(e) => setQuery(e.target.value)}></input>
+
+        <Link to={`/search/${query}`}>
+        <button className="button" type="submit">Search</button>
+        </Link>
+    </form>
+        </header>
+    
+    );
 }
 
 export default App;
