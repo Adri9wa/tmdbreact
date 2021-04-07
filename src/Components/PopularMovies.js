@@ -1,31 +1,49 @@
-import React, { useEffect, useState, Component } from 'react'
+import React, { useEffect, useState } from 'react'
 import MovieCard from './MovieCard'
+import InfiniteScroll from 'react-infinite-scroller'
+import qs from 'qs'
 
 export default function PopularMovies(){
     const [movies, setMovies] = useState([]);
-    const url = `https://api.themoviedb.org/3/movie/popular?api_key=071635fb0b2b71f93557ffd362974c76&language=en-US&page=1`
+    const [page, setPage] = useState([]);
+    let url = `https://api.themoviedb.org/3/movie/popular?api_key=071635fb0b2b71f93557ffd362974c76&language=en-US&`
 
 useEffect(() => {
-  async function fetchData() {
-      try{
-        const res = await fetch(url);
-        const data = await res.json();
-        console.log(data.results);
-        setMovies(data.results)
-    } catch(err){
-        console.error(err);
-    }
-  }
-  fetchData();
+  handleLoadMore({page: 1})
 }, []);
 
+  function handleLoadMore(page){
+    const strParams = qs.stringify(page);
+    if(strParams){
+      url = url+strParams;
+    }    
+    fetch(url)
+      .then((res) => res.json())
+      .then((res) => {
+
+        let newArray = movies.concat(res.results);
+        setMovies(newArray);
+        setPage(res.page);
+      })
+      .catch(err => console.log(err));
+  }
+
   return (
+    
     <div>
-        <div className="card-list">
+      <InfiniteScroll
+      className="card-list"
+      pageStart={0}
+      loadMore={() => handleLoadMore({ page: page+1 })}
+      hasMore={true || false}
+      useWindow={true}
+      >
+        
         {movies.filter(movie => movie.poster_path).map(movie => (
-            <MovieCard movie={movie} key={movie.id}/>))}</div> 
+            <MovieCard movie={movie} key={movie.id}/>))}
+        
+      </InfiniteScroll>
     </div>
 
-    
     );
 }

@@ -6,14 +6,35 @@ import { BrowserRouter as Router, Redirect, Route } from 'react-router-dom';
 import MovieDetails from './Components/MovieDetails'
 import Search from './Components/Search'
 import PopularMovies from './Components/PopularMovies';
+import { usePromiseTracker } from "react-promise-tracker";
+import Loader from 'react-loader-spinner';
+
+const LoadingIndicator = props => {
+  const { promiseInProgress } = usePromiseTracker();
+     return (
+      promiseInProgress &&
+      <div
+      style={{
+      width: "100%",
+      height: "100",
+      display: "flex",
+      justifyContent: "center",
+      alignItems: "center"
+      }}
+      >
+      <Loader type="ThreeDots" color="rgb(236, 6, 56)" height="100" width="100" />
+      </div>
+    );  
+   }
 
 ReactDOM.render(
   <Router>
-    <Redirect to="/popular" />
+      <Redirect from="/" to="/popular" />
       <Route path="/" component={App}/>
-      <Route path="/popular" exact component={PopularMovies} />
+      <Route path="/popular" exact render={() => <PopularMovies />} />
+      <LoadingIndicator/>
+      <Route path="/search/:name" exact render={(props) => <Search {...props} />} />
       <Route path="/details/:id" render={props => <MovieDetails {...props} />}/>
-      <Route path="/search/:name" component={Search} />
   </Router>
 ,
   document.getElementById('root')

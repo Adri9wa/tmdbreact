@@ -1,5 +1,6 @@
 .filmDetails{
-    margin: 30px 50px 50px 50px;
+    margin: 30px 50px 50px 120px;
+    font-family: 'Raleway',sans-serif;
     color:white;    
     display: flex;
 }
@@ -7,27 +8,45 @@
 .film--image{
     margin-right: 30px;
     border-radius: 80px;
-
+    border: 2px solid rgb(236, 6, 56);
 }
 
 .film--title{
     color: rgb(236, 6, 56);
-    font-family: 'Raleway',sans-serif;
     font-size: 55px;
     font-weight: 800;
+    line-height: 48px;
+    text-align: center; 
+    text-transform: uppercase;
+}
+.film--genres{
+    font-size: 46px;
+    font-weight: 700;
+}
+
+.film--runtime{
+    color: rgb(236, 6, 56);
+    font-size: 24px;
+    font-weight: 600;
+    padding-left: 60%;
+}
+
+.film--originalTitle{
+    color: rgb(145, 20, 47);
+    font-size: 36px;
+    font-weight: 700;
     line-height: 72px;
     text-align: center; 
     text-transform: uppercase;
 }
 
-.film--originalTitle{
-    color: rgb(145, 20, 47);
-    font-family: 'Raleway',sans-serif;
-    font-size: 36px;
-    font-weight: 500;
-    line-height: 72px;
-    text-align: center; 
-    text-transform: uppercase;
+.column{
+    display: flex;
+}
+
+.film--release{
+    margin-top: 110px;
+    text-align: center;
 }
 
 .film--rating{
@@ -36,13 +55,15 @@
     box-sizing:content-box;
     display: table;
     border: 3px solid yellow;
-    margin-top: 50px;
+    margin-top: 20px;
     border-radius: 20px;
+    margin-right: 40px;
     padding: 20px;
 }
 
 .film--overview{
-    margin-top: 50px;
+    margin-top: 20px;
     font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-    font-size: 20px;
+    font-size: 24px;
+    padding-right: 100px;
 }
