@@ -12,7 +12,9 @@ export default function App() {
         <img className="logo" src={TMDBLogo} alt="Logo"/>
         </Link>
         <p className="mainTitle">The Movie Database React app</p>
-
+        <Link to="/favorites">
+        <p className="favorites">Favorites</p>
+        </Link>
         <form className="form">
         <input type="text" name="query" placeholder="Enter name.."
         value={query} onChange={(e) => setQuery(e.target.value)}></input>

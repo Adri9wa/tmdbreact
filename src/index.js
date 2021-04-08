@@ -8,6 +8,7 @@ import Search from './Components/Search'
 import PopularMovies from './Components/PopularMovies';
 import { usePromiseTracker } from "react-promise-tracker";
 import Loader from 'react-loader-spinner';
+import Favorites from './Components/Favorites'
 
 const LoadingIndicator = props => {
   const { promiseInProgress } = usePromiseTracker();
@@ -35,6 +36,7 @@ ReactDOM.render(
       <LoadingIndicator/>
       <Route path="/search/:name" exact render={(props) => <Search {...props} />} />
       <Route path="/details/:id" render={props => <MovieDetails {...props} />}/>
+      <Route path="/favorites" component={Favorites}/>
   </Router>
 ,
   document.getElementById('root')

@@ -2,7 +2,12 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    margin-top: 20px;
+    margin-top: 200px;
+}
+
+a {
+    text-decoration: none;
+    color: rgb(236, 6, 56);
 }
 
 .card{
@@ -34,7 +39,6 @@
 .card--content{
     position: absolute;
     top: 0;
-    color: rgb(236, 6, 56);
     font-family: 'Raleway',sans-serif;
     text-decoration: none;
     left: 0;
@@ -62,3 +66,29 @@
 }
 
 
+.favoriteImg{
+    position: absolute;
+    left: 20px;
+    top: 15px;
+    z-index: 2;
+    width: 80px;
+    height: 80px;
+}
+
+.emptyMsg{
+    margin-top: 200px;
+    text-align: center;
+    color: rgb(236, 6, 56);
+    font-family: 'Raleway',sans-serif;
+    font-size: 36px;
+}
+
+.sadFace{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+    height: 200px;
+    width: 200px;
+    filter: drop-shadow(0px 0px 4px red);
+}

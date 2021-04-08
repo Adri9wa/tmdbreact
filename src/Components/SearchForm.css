@@ -28,7 +28,7 @@ input:-webkit-autofill{
   border: 3px solid black;
   width: 100px;
   cursor: pointer;
-  background-color: rgb(236, 22, 22);
+  background-color: rgb(236, 6, 56);
   transition: background-color linear .2s;
   outline: none;
 }

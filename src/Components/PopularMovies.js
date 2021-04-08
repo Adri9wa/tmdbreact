@@ -31,7 +31,7 @@ useEffect(() => {
   return (
     
     <div>
-      <InfiniteScroll
+      <InfiniteScroll //Implemented infinite scroll
       className="card-list"
       pageStart={0}
       loadMore={() => handleLoadMore({ page: page+1 })}
